@@ -1,0 +1,34 @@
+
+<h2>Register</h2>
+<form [formGroup]="teacherRegistrationForm" >
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" class="form-control" />
+       
+    </div>
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" formControlName="login" class="form-control"  />
+       
+    </div>
+    <div class="form-group">
+        <label for="doj">Date Of Joining</label>
+        <input type="text" formControlName="doj" class="form-control"  />
+       
+    </div>
+     isRegisterEnabled-->{{isRegisterEnabled}}
+     isEditEnabled -->{{isEditEnabled}}
+     isSaveEnabled -->{{isSaveEnabled}}
+    <div *ngIf="isRegisterEnabled" class="form-group">
+        <button  class="btn btn-primary">Register</button>
+    </div>
+     <div *ngIf="isEditEnabled" class="form-group">
+        <button  (click)="onEdit()" class="btn btn-primary">Edit</button>
+    </div>
+     <div *ngIf="isSaveEnabled" class="form-group">
+        <button  (click)="onSave()" class="btn btn-primary">Save</button>
+    </div>
+     <div class="form-group">
+        <button  (click)="onBack()" class="btn btn-primary">Back</button>
+    </div>
+</form>

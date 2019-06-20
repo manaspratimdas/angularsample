@@ -1,0 +1,40 @@
+
+<div class="search-div">
+<mat-form-field class="search-form-field" floatLabel="never">
+  <input matInput type="text" placeholder="Search" [(ngModel)]="searchKey" (keyup)="applyFilter()">
+  <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+    <mat-icon >close</mat-icon>
+  </button>
+  
+</mat-form-field>
+</div>
+
+
+<div class="mat-elevation-z8">
+    <mat-table  [dataSource]="listData" matSort>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
+            <mat-cell *matCellDef="let element"><a [routerLink]="['/student/details','list',element.login]">{{element.name}}</a></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="login">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Login</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.login}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.age}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">              
+                 <a [routerLink]="['/student/details','modify',element.login]">modify</a> |
+                 <a routerLink="/student/remove">remove</a>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; let even = even; columns: displayedColumns;"  [ngClass]="{gray: even}"></mat-row>
+
+    </mat-table>
+   <mat-paginator [pageSize]="pageSize"   showFirstLastButtons ></mat-paginator>
+</div>
